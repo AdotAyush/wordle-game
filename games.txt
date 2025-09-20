@@ -1,0 +1,8 @@
+Ayush,RIVER,true,5,2025-09-19
+Ayush@1,GRASS,false,5,2025-09-20
+Ayush@1,APPLE,true,3,2025-09-20
+ayush,CHAIR,false,6,2025-09-20
+Ayush,BRAIN,true,5,2025-09-20
+Anand,FRUIT,false,6,2025-09-20
+Anand,CHAIR,true,2,2025-09-20
+Anand,APPLE,false,6,2025-09-20
