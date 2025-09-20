@@ -1,14 +1,13 @@
 # Wordle-Style Word Guessing Game
 
-A beautiful Wordle-inspired word guessing game with a clean, modern interface!
+A Wordle-inspired word guessing game with a clean, modern interface!
 
 ## Features
-- 🎯 **Wordle-style Grid**: 6x5 grid with color-coded feedback
-- 🎨 **Clean Design**: White background with Wordle's signature colors
-- 👤 **User System**: Registration, login, and role management
-- 👑 **Admin Statistics**: View game statistics and reports
-- ⌨️ **Keyboard Support**: Press Enter to submit guesses
-- 🎮 **Interactive**: Real-time grid updates with color feedback
+- **Wordle-style Grid**: 6x5 grid with color-coded feedback
+- **User System**: Registration, login, and role management
+- **Admin Statistics**: View game statistics and reports
+- **Keyboard Support**: Press Enter to submit guesses
+- **Interactive**: Real-time grid updates with color feedback
 
 ## How to Play
 1. Register a new account or login
@@ -46,4 +45,4 @@ java WordGame
 - **Keyboard Input**: Type and press Enter to submit
 - **Status Updates**: Real-time feedback on guesses
 
-Enjoy playing this Wordle-inspired game! 🎮✨
+Enjoy playing this Wordle-inspired game
