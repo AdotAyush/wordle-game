@@ -16,9 +16,19 @@ public class WordGame {
     private static int guessCount = 0;
     private static boolean gameActive = false;
 
-    private static String[] words = {"APPLE", "BRAIN", "CHAIR", "DANCE", "EARTH", "FRUIT", "GRASS", "HORSE", "IDEAS", "JUICE"};
+    private static String[] words = {
+    "APPLE", "BRAIN", "CHAIR", "DANCE", "EARTH",
+    "FRUIT", "GRASS", "HORSE", "IDEAS", "JUICE",
+    "KNIFE", "LIGHT", "MONEY", "NORTH", "OCEAN",
+    "PLANT", "QUEEN", "ROBOT", "SUGAR", "TRAIN",
+    "UNDER", "VIRUS", "WATER", "XENON", "YOUTH",
+    "ZEBRA", "CLOUD", "STORM", "FLOOD", "MOUNT",
+    "RIVER", "SHINE", "PEARL", "STONE", "LEMON",
+    "MANGO", "BERRY", "MUSIC", "WORDS", "HAPPY",
+    "SMILE", "CRASH", "BLEND", "TRACE", "CROWN",
+    "GLASS", "SHARP", "ROUND", "FLAME", "SHOCK"
+};
 
-    // Wordle-style grid components
     private static JLabel[][] gridLabels = new JLabel[6][5];
     private static JTextField guessField;
     private static JLabel statusLabel;
@@ -35,34 +45,27 @@ public class WordGame {
         mainFrame = new JFrame("WORDLE");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Wordle colors
         Color bgColor = Color.WHITE;
         Color darkGray = new Color(58, 58, 60);
 
         mainFrame.getContentPane().setBackground(bgColor);
 
-        // Create card layout for switching between login and game
         cardLayout = new CardLayout();
         mainCardPanel = new JPanel(cardLayout);
         mainCardPanel.setBackground(bgColor);
 
-        // Title
         JLabel title = new JLabel("WORDLE", JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 36));
         title.setForeground(darkGray);
         title.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 
-        // Login Panel
         JPanel loginPanel = createWordleLoginPanel();
 
-        // Game Panel
         JPanel gamePanel = createGamePanel();
 
-        // Add panels to card layout
         mainCardPanel.add(loginPanel, "LOGIN");
         mainCardPanel.add(gamePanel, "GAME");
 
-        // Main panel with title and cards
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(bgColor);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
@@ -72,13 +75,11 @@ public class WordGame {
 
         mainFrame.add(mainPanel);
 
-        // Set proper sizing
         mainFrame.setMinimumSize(new Dimension(500, 700));
         mainFrame.pack();
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
 
-        // Show login panel initially
         cardLayout.show(mainCardPanel, "LOGIN");
         updateStatus();
     }
@@ -91,7 +92,6 @@ public class WordGame {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
-        // Username
         gbc.gridx = 0; gbc.gridy = 0;
         JLabel userLabel = new JLabel("Username:");
         userLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -103,7 +103,6 @@ public class WordGame {
         usernameField.setFont(new Font("Arial", Font.PLAIN, 14));
         panel.add(usernameField, gbc);
 
-        // Password
         gbc.gridx = 0; gbc.gridy = 1;
         JLabel passLabel = new JLabel("Password:");
         passLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -115,7 +114,6 @@ public class WordGame {
         passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
         panel.add(passwordField, gbc);
 
-        // Role
         gbc.gridx = 0; gbc.gridy = 2;
         JLabel roleLabel = new JLabel("Role:");
         roleLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -127,7 +125,6 @@ public class WordGame {
         roleCombo.setFont(new Font("Arial", Font.PLAIN, 14));
         panel.add(roleCombo, gbc);
 
-        // Buttons
         gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2;
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.setBackground(Color.WHITE);
@@ -159,7 +156,6 @@ public class WordGame {
         panel.setBackground(Color.WHITE);
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Create 6x5 grid of labels
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 5; col++) {
                 JLabel label = new JLabel("", JLabel.CENTER);
@@ -183,10 +179,8 @@ public class WordGame {
         panel.setBackground(Color.WHITE);
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Game Grid Panel
         JPanel gridPanel = createWordleGrid();
 
-        // Compute preferred size for grid
         int cellW = gridLabels[0][0].getPreferredSize().width;
         int cellH = gridLabels[0][0].getPreferredSize().height;
         int cols = 5, rows = 6;
@@ -202,10 +196,8 @@ public class WordGame {
         gridScroll.setBorder(null);
         gridScroll.getVerticalScrollBar().setUnitIncrement(16);
 
-        // Input Panel
         JPanel inputPanel = createInputPanel();
 
-        // Status Panel
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         statusPanel.setBackground(Color.WHITE);
         statusLabel = new JLabel("Welcome! Please login to start playing");
@@ -470,7 +462,7 @@ public class WordGame {
             if (game.date.equals(LocalDate.now())) todayGames++;
         }
 
-        String stats = "📊 ADMIN STATISTICS 📊\n\n" +
+        String stats = " ADMIN STATISTICS \n\n" +
                 "Total Users: " + totalUsers + "\n" +
                 "Total Games: " + totalGames + "\n" +
                 "Games Won: " + wonGames + "\n" +
@@ -500,6 +492,8 @@ public class WordGame {
             }
         } catch (IOException e) {
             // File doesn't exist yet
+            System.err.println("Caught exception : " + e);
+            e.printStackTrace();
         }
         
         try (BufferedReader reader = new BufferedReader(new FileReader("games.txt"))) {
@@ -515,6 +509,8 @@ public class WordGame {
             }
         } catch (IOException e) {
             // File doesn't exist yet
+            System.err.println("Caught exception : " + e);
+            e.printStackTrace();
         }
     }
     
